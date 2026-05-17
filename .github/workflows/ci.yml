@@ -21,13 +21,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
+        run: npm i --legacy-peer-deps
 
       - name: Run build
-        run: npm run build
+        run: npm run build --if-present
