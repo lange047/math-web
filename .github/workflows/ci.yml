@@ -4,10 +4,13 @@ on:
   push:
 
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Baixar projeto
         uses: actions/checkout@v4
 
@@ -15,24 +18,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          - name: Instalar dependências
-        run: npm ci
 
-      
-    passos:
-      - nome: Baixar projeto
-        utiliza: ações/checkout@v4
+      - name: Instalar dependências
+        run: npm install
 
-      - nome: Instalar Nó
-        utiliza: actions/setup-node@v4
-        com:
-          versão do nó: 20
+      - name: Permitir execução do Vite
+        run: chmod +x node_modules/.bin/vite
 
-      - nome: Instalar dependências
-        executar: npm ci
-
-      - nome: Dar permissão de execução ao Vite
-        executar: chmod +x ./node_modules/.bin/vite
-
-      - nome: Gerar construir
-        executar: npm run build
+      - name: Gerar build
+        run: npm run build
