@@ -1,29 +1,30 @@
-name: Front-End CI
+name: CI de Front-End
 
 on:
   push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-
-      - name: Baixar projeto
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Instalar Node
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
-      - name: Instalar dependências
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Permitir execução do Vite
-        run: chmod +x node_modules/.bin/vite
+      - name: Run tests
+        run: npm test
 
-      - name: Gerar build
+      - name: Run build
         run: npm run build
