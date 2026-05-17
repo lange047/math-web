@@ -18,12 +18,21 @@ jobs:
           - name: Instalar dependências
         run: npm ci
 
-      # ADICIONE ESTE PASSO AQUI EMBAIXO:
-      - name: Dar permissão de execução ao Vite
-        run: chmod +x ./node_modules/.bin/vite
+      
+    passos:
+      - nome: Baixar projeto
+        utiliza: ações/checkout@v4
 
-      - name: Gerar construir
-        run: npm run build
+      - nome: Instalar Nó
+        utiliza: actions/setup-node@v4
+        com:
+          versão do nó: 20
 
-      - name: Install dependencies
-        run: npm ci
+      - nome: Instalar dependências
+        executar: npm ci
+
+      - nome: Dar permissão de execução ao Vite
+        executar: chmod +x ./node_modules/.bin/vite
+
+      - nome: Gerar construir
+        executar: npm run build
