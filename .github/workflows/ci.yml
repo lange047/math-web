@@ -1,4 +1,5 @@
-name: CI de Front-End
+
+ name: CI de Front-End
 
 on:
   push:
